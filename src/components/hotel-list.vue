@@ -10,15 +10,11 @@
 
       <!-- <hotelbox v-if="showHT" /> -->
 
-      <ul>
-        <li
+      <hotelcard
         v-for="theHtl of stuff2"
         :key="theHtl.modified"
-        v-html="theHtl.title.rendered"
-        @click="$emit('theHtl', theHtl)"
-        >
-        </li>
-      </ul>
+        :theHtl2="theHtl"
+      />
     </div>
   </div>
 </template>
@@ -26,11 +22,12 @@
 <script>
 import hotelbox from './hotelbox'
 import loading from './loading'
+import hotelcard from './hotel-card'
 
 export default {
   name: 'hotel-list',
   components:{
-    hotelbox, loading
+    hotelbox, loading, hotelcard
   },
   data(){
     return{
@@ -60,14 +57,6 @@ export default {
         return ans.length
       }
       catch(e){console.log(e)}
-    },
-
-    async testLoop(){
-      for(;;){
-        const box = await this.getAllPosts()
-        console.log('+ circle ', box)
-        if(box < 10 || box == undefined || box === null) break
-      }
     },
 
     async MyLoop(){
@@ -115,7 +104,6 @@ export default {
   },
   mounted(){
     this.MyLoop()
-    // this.testLoop()
   }
 }
 </script>
