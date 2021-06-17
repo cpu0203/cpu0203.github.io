@@ -1,8 +1,13 @@
 <template>
   <div class="hotel-list">
+
+    <loading
+      v-if="!stuff2.length"
+    />
+
     <div class="hotels-top">
       <h4>В поездке мы предлагаем вам размещение в номере любой из предоставленных гостиниц</h4>
-      
+
       <!-- <hotelbox v-if="showHT" /> -->
 
       <ul>
@@ -20,11 +25,12 @@
 
 <script>
 import hotelbox from './hotelbox'
+import loading from './loading'
 
 export default {
   name: 'hotel-list',
   components:{
-    hotelbox
+    hotelbox, loading
   },
   data(){
     return{
@@ -102,7 +108,7 @@ export default {
           guid: pics.source_url
         }
         return filteredMedia
-        
+
       }
       catch(e){console.log(e)}
     }
