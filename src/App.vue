@@ -42,6 +42,16 @@ import hotelcard from '@/components/hotel-card'
 import kalendarfilter from '@/components/kalendar-filter'
 import formorder from '@/components/formorder'
 
+// function test03(){
+//   document.addEventListener('DOMContentLoaded', ()=>{
+//     let hg = document.querySelector('h2')
+//     // let hg = document.querySelectorAll('.one-line')
+//     console.log(hg)
+//   })
+// }
+// test03()
+
+
 export default {
   name: 'app',
   components: {

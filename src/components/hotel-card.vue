@@ -7,12 +7,24 @@
       @click="$emit('doIsOpen', false)"
     >&#10006;</span> -->
 
+    
 
     <h2 v-html="theHtl2.title.rendered"></h2>
 
     <transition name="appear">
       <div class="htl-content" v-if="showContent">
-        <span class="xx" @click="justClose">&#10006;</span>
+        <div class="xx">
+          <span @click="justClose">&#10006;</span>
+          <span @click="justClose">&#8679;</span>
+          <span @click="justClose">&#8679;</span>
+        </div>
+
+        <div 
+          class="imgs_box"
+          v-if="showContent"
+        >
+        </div>
+
         <div
           v-html="theHtl2.content.rendered"
         ></div>
@@ -25,6 +37,8 @@
 </template>
 
 <script>
+import {picFromDOM2} from '@/fns'
+
 export default {
   data() {
     return {
@@ -49,14 +63,33 @@ export default {
 
     showHtlCard(e){
       if(e.target.tagName == 'H2' && this.showContent !== true){
-        console.log(this.showContent)
         this.showContent = true
+        picFromDOM2()
       }
     },
 
     justClose(){
       this.showContent = false
-    }
+    },
+
+    picFromDOM2() {
+      this.$nextTick(() => {
+        const imgsBox = document.querySelector('.imgs_box')
+        let picsNode = document.querySelectorAll('img')
+
+        console.log(picsNode)
+
+        if(picsNode.length > 0){
+          for(let val of picsNode){
+            imgsBox.append(val)
+            val.removeAttribute('width')
+            val.removeAttribute('height')
+            val.removeAttribute('sizes')
+            val.classList.remove('wp-image-359')
+          }
+        }
+      })
+    },
 
   }
 }
@@ -81,9 +114,9 @@ export default {
   border: 1px solid #b9b9b9;
   border-radius: 5px;
   z-index: 1;
-  left: 2rem;
-  right: 2rem;
-  top: 3rem;
+  left: 1rem;
+  right: 1rem;
+  top: 1rem;
 }
 .tocls{
   position: absolute;
@@ -94,14 +127,39 @@ export default {
 .one-line .xx{
   position: absolute;
   top: .5rem;
-  right: 1rem;
+  right: -.2rem;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  align-items: center;
+  padding: 3px;
+  border-radius: 3px;
 }
-.htl-content img{
-  display: inline-block;
-  width: 31%;
-  border-radius: 4px;
+.one-line .xx >*{
+  flex: 1 1 100%;
+  font-size: 1.8rem;
 }
+.one-line .xx >*:nth-child(3){
+  transform: rotate(0.5turn);
+}
+
+.imgs_box{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: -1rem -1rem 2rem -1rem;
+  background: #b5b09e;
+  box-shadow: 0 5px 5px rgb(0 0 0 / 30%);
+}
+.imgs_box >*{
+  flex: 1 1 100%;
+  max-width: 33%;
+  outline: 1px solid #d8d8d8;
+  outline-offset: -8px;
+}
+
+
 
 .appear-enter-active,
 .appear-leave-active{

@@ -34,11 +34,11 @@ export default {
       pageNm: 1,
       posts: [],
       showHT: true,
-      pageNm: 1,
       stuff: [],
       stuff2: []
     }
   },
+
   methods:{
     clicked(){
       this.showHT = true
@@ -84,6 +84,7 @@ export default {
           greenBox.push(i)
         }
           this.stuff2 = greenBox
+          // test02()
           return greenBox
     },
 
