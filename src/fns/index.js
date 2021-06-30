@@ -6,7 +6,7 @@ export function picFromDOM2() {
       const imgsBox = document.querySelector('.imgs_box')
       let picsNode = hotelCard.querySelectorAll('img')
 
-      console.log(hotelCard.clientHeight)
+      // console.log(hotelCard.clientHeight)
 
       for(let val of picsNode){
         imgsBox.append(val)

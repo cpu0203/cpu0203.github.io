@@ -15,8 +15,8 @@
       <div class="htl-content" v-if="showContent">
         <div class="xx">
           <span @click="justClose">&#10006;</span>
-          <span @click="justClose">&#8679;</span>
-          <span @click="justClose">&#8679;</span>
+          <!-- <span @click="justClose">&#8679;</span> -->
+          <!-- <span @click="justClose">&#8679;</span> -->
         </div>
 
         <div 
